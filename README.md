@@ -1,1 +1,1 @@
-# Teach-Blog
+# Tech-Blog
