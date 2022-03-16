@@ -1,27 +1,42 @@
 {{!-- Click on a post and add comments as well as view comments requires auth --}}
-<div class="ui divided items">
-    {{#each postData as |post|}}
+<h2>Post:</h2>
+
+<div class="ui divided  items">
 
     <div class="item">
         <div class="content">
-        <div class="header">{{post.title}}</div>
-        <div class="meta">
-            <span>Post: </span>
-        </div>
-        <div class="description">
-            <p>{{post.description}}</p>
-        </div>
-        <div class="extra">
-            Posted by: {{post.user.user_name}} on {{{get_date post}}}
-            <a href="/post/{{post.id}}">
-            <div class="ui right floated primary button">
-            View post
-            <i class="right chevron icon"></i>
+            <div class="header">{{postData.title}}</div>
+            <div class="meta">
+                <span>Post: </span>
             </div>
-            </a>
-        </div>
+            <div class="description">
+                <p>{{postData.description}}</p>
+            </div>
+            <div class="extra">
+                Posted by: {{postData.user.user_name}} on {{get_date postData}}
+            </div>
         </div>
     </div>
 
-    {{/each}}
+<div class="ui divider"></div>
+
+<h2>Comments: </h2>
+
+{{#each commentData as |comment|}}
+   
+   <div class="ui large comments">
+        <div class="comment">
+            <div class="content">
+                <div class="author">{{comment.user.user_name}}</div>
+                <div class="metadata">
+                    <div class="date">{{get_date comment}}</div>
+                </div>
+                <div class="text">
+                    {{comment.description}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{/each}}
 </div>

@@ -1,13 +1,16 @@
+// When a user hits the login button with their credentials
+
 const loginFormHandler = async (event) => {
     event.preventDefault();
   
-    const email = document.querySelector('#email-login').value.trim();
-    const password = document.querySelector('#password-login').value.trim();
+    const user_name = document.querySelector('#username').value.trim();
+    const password = document.querySelector('#password').value.trim();
   
-    if (email && password) {
+    // Send the body to the route if the credentials are entered (valid or invalid)
+    if (user_name && password) {
       const response = await fetch('/api/users/login', {
         method: 'POST',
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ user_name, password }),
         headers: { 'Content-Type': 'application/json' },
       });
   
@@ -23,7 +26,7 @@ const loginFormHandler = async (event) => {
     .querySelector('.form')
     .addEventListener('submit', loginFormHandler);
 
-    // Redirect to signup page
+    // // Redirect to signup page
     document
     .querySelector('#signup')
     .addEventListener('click', () => {

@@ -41,6 +41,7 @@ router.get('/', async (req, res) =>
         // res.status(200).json(postData);
         res.render('homepage', {
             postData,
+            loggedIn: req.session.loggedIn,
           });
     }
     catch(err)
@@ -66,16 +67,22 @@ router.get('/post/:id', async (req, res) =>
         const postData = dbPostData.get({ plain: true });
 
         const dbCommentData = await Comment.findAll({
-            where: { user_id: postData.user.user_id }
+            where: { user_id: dbPostData.id },
+            include: {
+                model: User,
+                attributes: ['user_name']
+            },
         });
 
         const commentData = dbCommentData.map((data) => data.get({ plain: true }));
 
-        res.status(200).json(postData);
-        // res.render('postDetails', {
-        //     postData,
-        //     commentData
-        // });
+        // res.status(200).json(dbCommentData);
+
+        res.render('postDetails', {
+            postData,
+            commentData,
+            loggedIn: req.session.loggedIn,
+        });
 
     }
     catch(err)
