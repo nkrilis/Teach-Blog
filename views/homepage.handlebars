@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+<div class="ui divided items">
+    {{#each postData as |post|}}
+
+    <div class="item">
+        <div class="content">
+        <div class="header">{{post.title}}</div>
+        <div class="meta">
+            <span>Post: </span>
+        </div>
+        <div class="description">
+            <p>{{post.description}}</p>
+        </div>
+        <div class="extra">
+            Posted by: {{post.user.user_name}} on {{{get_date post}}}
+            <a href="/{{post.id}}">
+            <div class="ui right floated primary button">
+            View post
+            <i class="right chevron icon"></i>
+            </div>
+            </a>
+        </div>
+        </div>
+    </div>
+
+    {{/each}}
+</div>

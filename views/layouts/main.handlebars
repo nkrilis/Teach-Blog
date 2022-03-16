@@ -8,47 +8,40 @@
     {{!-- Import semantic-UI Framework --}}
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    {{!-- <link rel="stylesheet" type="text/css" href="/css/jass.css"> --}}
 
+      
     <title>Tech Blog</title>
 </head>
+
 <body>
-    <nav>
-        <div class="ui top medium fixed menu">
-            <a href="/" class="header item">
-            <h2>GitFit</h2>
-            </a>
-            <div class="right menu">
-                {{#if loggedIn}}
-                <div class="item">
-                    <button class="ui secondary button" id="logout">Logout</button>
-                </div>
-                {{!-- <div class="item">
-                    <a href="/update">
-                        <button class="ui secondary button" id="update">Update</button>
-                    </a> --}}
-                </div>
-                {{else}}
-                <div class="item">
-                    <a href="/login">
-                        <div class="ui secondary button" id="login">Login</div>
-                    </a>
-                </div>
-                {{/if}}
-            </div>
+    <div class="ui fixed inverted menu massive">
+        <div class="ui container">
+          <a href="/" class="header item">
+            Tech Blog
+          </a>
+          {{#if loggedIn}}
+            <a href="" class="item">Logout</a>
+          {{else}}
+            <a href="/login" class="item">Login</a>
+            <a href="/signup" class="item">Signup</a>
+          {{/if}}
+      
         </div>
-      </nav>
+      </div>
 
-      <main>
+      <div class="ui main text container">
+
           {{{body}}}
-      </main>
+        
+      </div>
 
+    
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
     {{#if loggedIn}}
-    <script src="/js/logout.js"></script>
+     <script src="/js/logout.js"></script>
     {{/if}}
 
 </body>
