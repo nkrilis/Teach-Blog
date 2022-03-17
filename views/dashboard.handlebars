@@ -1,0 +1,36 @@
+
+<h2>Your Posts</h2>
+<h3>Please click a post to update it</h3>
+<br>
+<div class="ui cards">
+{{#each postData as |post|}}
+  <a class="ui card" href="/api/users/update/{{post.id}}">
+    <div class="content">
+      <div class="header">{{post.title}}</div>
+      <div class="meta">{{get_date post}}</div>
+      <div class="description">
+       {{post.description}}
+      </div>
+    </div>
+  </a>
+{{/each}}
+</div>
+
+<div class="ui divider"></div>
+<br><br>
+
+<form class="ui reply form">
+    <h4 class="ui dividing header">Create Post</h4>
+    <div class="field">
+        <label>Title</label>
+        <input type="text" name="title" placeholder="Title" id="title">
+    </div>
+    <div class="field">
+        <label>Post</label>
+        <textarea id="description"></textarea>
+    </div>
+    <button class="ui primary submit labeled icon button" data-user="{{user_id}}" id="add_post" >
+        <i class="icon edit"></i> Create Post
+    </button>
+  </form>
+<script src="/js/createPost.js"></script>

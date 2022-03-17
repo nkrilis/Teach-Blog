@@ -39,4 +39,20 @@
     </div>
 
 {{/each}}
+
 </div>
+
+{{#if loggedIn}}
+
+  <form class="ui reply form">
+    <div class="field">
+      <textarea id="comment"></textarea>
+    </div>
+    <div class="ui primary submit labeled icon button" data-user="{{user_id}}" data-post="{{postData.id}}" id="add_comment">
+      <i class="icon edit"></i> Add Comment
+    </div>
+  </form>
+
+  <script src="/js/comment.js"></script>
+
+{{/if}}

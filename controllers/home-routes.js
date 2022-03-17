@@ -42,6 +42,7 @@ router.get('/', async (req, res) =>
         res.render('homepage', {
             postData,
             loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id,
           });
     }
     catch(err)
@@ -59,7 +60,7 @@ router.get('/post/:id', async (req, res) =>
             [
                 {
                     model: User,
-                    attributes: ['user_name'],
+                    attributes: ['user_name', 'id'],
                 },
             ]
         });
@@ -67,7 +68,7 @@ router.get('/post/:id', async (req, res) =>
         const postData = dbPostData.get({ plain: true });
 
         const dbCommentData = await Comment.findAll({
-            where: { user_id: dbPostData.id },
+            where: { post_id: req.params.id },
             include: {
                 model: User,
                 attributes: ['user_name']
@@ -82,6 +83,7 @@ router.get('/post/:id', async (req, res) =>
             postData,
             commentData,
             loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id,
         });
 
     }

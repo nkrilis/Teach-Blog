@@ -3,6 +3,112 @@ const { User, Post, Comment } = require('../../models');
 
 const withAuth = require('../../utils/auth');
 
+router.post('/comment', withAuth, async (req, res) =>
+{
+    try
+    {
+      const dbCommentData = await Comment.create(req.body);
+
+      res.status(200).json(dbCommentData);
+
+    }
+    catch(err)
+    {
+      console.log(err);
+      res.status(500).json(err);
+    }
+});
+
+router.get('/dashboard', withAuth, async (req, res) =>
+{
+  try
+  {
+    const dbPostData = await Post.findAll({
+      where: { user_id: req.session.user_id }
+    });
+
+    const postData = dbPostData.map((data) => data.get({ plain: true }));
+
+    res.render('dashboard', {
+      postData,
+      loggedIn: req.session.loggedIn,
+      user_id: req.session.user_id,
+    });
+
+
+  }
+  catch(err)
+  {
+    res.status(500).json(err);
+  }
+
+});
+
+router.post('/create', withAuth, async (req, res) => 
+{
+  try
+  {
+    const dbPostData = await Post.create(req.body);
+
+    res.status(200).json(dbPostData);
+
+  }
+  catch(err)
+  {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get('/update/:id', withAuth, async (req, res) =>
+{
+  try
+  {
+    const dbPostData = await Post.findByPk(req.params.id);
+
+    const postData = dbPostData.get({ plain: true });
+
+
+
+    res.status(200).render('updatePost', {
+      postData,
+      loggedIn: req.session.loggedIn,
+      user_id: req.session.user_id,
+    });
+
+  }
+  catch(err)
+  {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.put('/update/:id', withAuth, async (req, res) => 
+{
+  try
+  {
+    const dbPostData = await Post.update(
+      {
+        title: req.body.title,
+        description: req.body.description,
+      },
+      {
+        where: {id: req.params.id}
+      });
+
+    res.status(200).json(dbPostData);
+
+  }
+  catch(err)
+  {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+
+// Home signup route
 router.post('/', async (req, res) => {
     try 
     {
@@ -11,7 +117,6 @@ router.post('/', async (req, res) => {
       req.session.save(() => 
       {
         req.session.loggedIn = false;
-        req.session.category = dbUserData.category_id;
   
         res.status(200).json(dbUserData);
       });
@@ -24,6 +129,7 @@ router.post('/', async (req, res) => {
     }
   });
 
+  // Login route
   router.post('/login', async (req, res) => {
     try {
       const dbUserData = await User.findOne({
@@ -62,6 +168,7 @@ router.post('/', async (req, res) => {
     }
   });
 
+  // Logout route
   router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
       req.session.destroy(() => {

@@ -1,0 +1,15 @@
+<form class="ui reply form">
+    <h4 class="ui dividing header">Create Post</h4>
+    <div class="field">
+        <label>Title</label>
+        <input type="text" name="title" value="{{postData.title}}" id="title">
+    </div>
+    <div class="field">
+        <label>Post</label>
+        <textarea id="description">{{postData.description}}</textarea>
+    </div>
+    <button class="ui primary submit labeled icon button" data-user="{{user_id}}" data-post="{{postData.id}}" id="update_post" >
+        <i class="icon edit"></i> Update Post
+    </button>
+  </form>
+<script src="/js/updatePost.js"></script>
