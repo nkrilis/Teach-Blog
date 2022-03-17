@@ -5,9 +5,20 @@
   ## Description
   
   Tech Blog gives a user the ability to view blog posts made by various users. When a user creates an account they will have the ability to create their own blog posts and comment on other user's blog posts. The user also has the ability to update their blog posts at any time through their dashboard.
-
-
   [View the live deployment here](https://nkrilis-tech-blog.herokuapp.com/)
+  
+  ## Table of Contents
+  
+  - [Screenshots](#screenshots)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#how-to-contribute)
+  - [Tests](#tests)
+  - [Qyestions](#questions)
+  - [License](#license)
+
+
+## Screenshots
 
   ### Login Page
   ![Login image](./public/images/login.png)
@@ -26,15 +37,6 @@
 
   ### Update Page
   ![Update image](./public/images/update.png)
-  
-  ## Table of Contents
-  
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Contributing](#how-to-contribute)
-  - [Tests](#tests)
-  - [Qyestions](#questions)
-  - [License](#license)
   
   ## Installation
   In order to install the project you must first clone this repo to your local machine. Once cloned you can run `npm install` to install all the necessary dependencies to run the application. You must also initialize the database through the database `schema.sql` file. To do this run `mysql -u root -p` and enter your password when prompted. From the main directory of the application, in the `mysql` enviornment run `source ./db/schema.sql` this will create the database for the application.
