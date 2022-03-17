@@ -3,7 +3,7 @@
 const updateFormHandler = async (event) => {
     event.preventDefault();
     
-    const user_id = document.querySelector('#update_post').getAttribute('data-user');
+    // const user_id = document.querySelector('#update_post').getAttribute('data-user');
     const post_id = document.querySelector('#update_post').getAttribute('data-post');
     const title = document.querySelector('#title').value.trim();
     const description = document.querySelector('#description').value.trim();
